@@ -1,0 +1,55 @@
+{
+  "entities": {
+    "Ticket": {
+      "title": "SupportTicket",
+      "description": "An IT support ticket submitted by a user or technician.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique identifier of the ticket" },
+        "ticketNumber": { "type": "string", "description": "Human-readable ticket code like IT-2026-1040" },
+        "createdAt": { "type": "string", "description": "Creation timestamp in YYYY-MM-DD HH:mm format" },
+        "updatedAt": { "type": "string", "description": "Last update timestamp" },
+        "userName": { "type": "string", "description": "Name of the reporting user" },
+        "department": { "type": "string", "description": "Department name" },
+        "deviceType": { "type": "string", "description": "Type of device affected" },
+        "os": { "type": "string", "description": "Operating system" },
+        "category": { "type": "string", "description": "Problem category key" },
+        "categoryLabel": { "type": "string", "description": "Arabic label of the category" },
+        "description": { "type": "string", "description": "Detailed description of the issue" },
+        "priority": { "type": "string", "enum": ["منخفض", "متوسط", "مرتفع", "حرج"], "description": "Priority level" },
+        "status": { "type": "string", "enum": ["جديد", "قيد المعالجة", "تم الحل", "مغلق"], "description": "Current status" },
+        "technicianName": { "type": "string", "description": "Assigned technician display name" },
+        "technicians": { "type": "array", "description": "Array of assigned technician names" },
+        "diagnosisSummary": { "type": "string", "description": "Summary from diagnostic engine or technician" },
+        "suggestedSolution": { "type": "string", "description": "Recommended solution" },
+        "resolutionNotes": { "type": "string", "description": "Closing notes" },
+        "assistanceType": { "type": "string", "enum": ["self", "remote", "on_site"], "description": "Assistance mode" },
+        "requiresSpecialistIntervention": { "type": "boolean", "description": "Whether an IT specialist must intervene" },
+        "followUpHistory": { "type": "array", "description": "Messages or visit requests" }
+      },
+      "required": ["ticketNumber", "userName", "description", "status", "priority", "category"]
+    },
+    "Presence": {
+      "title": "OnlinePresence",
+      "description": "Heartbeat record of currently active users on the platform.",
+      "type": "object",
+      "properties": {
+        "sessionId": { "type": "string" },
+        "userName": { "type": "string" },
+        "deviceType": { "type": "string" },
+        "lastSeen": { "type": "number" }
+      },
+      "required": ["sessionId", "userName", "lastSeen"]
+    }
+  },
+  "firestore": {
+    "/tickets/{ticketId}": {
+      "schema": "Ticket",
+      "description": "Collection of all IT support tickets accessible to company staff."
+    },
+    "/presence/{sessionId}": {
+      "schema": "Presence",
+      "description": "Active online presence sessions across devices."
+    }
+  }
+}

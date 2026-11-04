@@ -1,0 +1,6 @@
+{
+  "name": "مساعد الدعم الفني الذكي – IT Support Assistant",
+  "description": "نظام وتطبيق ويب متكامل لمسؤولي وموظفي الدعم الفني وتقنية المعلومات لتشخيص وحل مشاكل الحاسوب والشبكات وإصدار بلاغات الصيانة الذكية باللغة العربية.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
